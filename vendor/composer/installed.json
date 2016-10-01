@@ -1087,5 +1087,66 @@
             "widget",
             "yii2"
         ]
+    },
+    {
+        "name": "morozovsk/websocket",
+        "version": "4.2.0",
+        "version_normalized": "4.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/morozovsk/websocket.git",
+            "reference": "b572f7372ce959ebd2db29ab4733f6212f2dbed2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/morozovsk/websocket/zipball/b572f7372ce959ebd2db29ab4733f6212f2dbed2",
+            "reference": "b572f7372ce959ebd2db29ab4733f6212f2dbed2",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mbstring": "*",
+            "php": ">=5.3.0"
+        },
+        "time": "2016-03-15 09:38:14",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "morozovsk\\websocket\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "simple chat (single daemon)",
+                "homepage": "http://sharoid.ru/chat.html"
+            },
+            {
+                "name": "pro chat (master + worker)",
+                "homepage": "http://sharoid.ru/chat2.html"
+            },
+            {
+                "name": "simple game",
+                "homepage": "http://sharoid.ru/game.html"
+            }
+        ],
+        "description": "simple php websocket server with examples and demo: simple chat (single daemon) - http://sharoid.ru/chat.html , pro chat (master + worker) - http://sharoid.ru/chat2.html , simple game - http://sharoid.ru/game.html",
+        "homepage": "http://sharoid.ru/game.html",
+        "keywords": [
+            "chat",
+            "demo",
+            "event",
+            "examle",
+            "game",
+            "laravel",
+            "libevent",
+            "server",
+            "socket_select",
+            "websocket",
+            "yii"
+        ]
     }
 ]

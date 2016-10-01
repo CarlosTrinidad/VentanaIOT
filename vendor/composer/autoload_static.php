@@ -23,6 +23,10 @@ class ComposerStaticInite7bbc9e18f4d13c4675486b0c8f56260
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
         ),
+        'm' => 
+        array (
+            'morozovsk\\websocket\\' => 20,
+        ),
         'k' => 
         array (
             'kartik\\time\\' => 12,
@@ -71,6 +75,10 @@ class ComposerStaticInite7bbc9e18f4d13c4675486b0c8f56260
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'morozovsk\\websocket\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/morozovsk/websocket',
         ),
         'kartik\\time\\' => 
         array (

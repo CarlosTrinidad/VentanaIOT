@@ -18,8 +18,8 @@ class AlarmasSearch extends Alarmas
     public function rules()
     {
         return [
-            [['id', 'estado_ventana', 'estado_cortina'], 'integer'],
-            [['dia', 'hora'], 'safe'],
+            [['id', 'listo', 'estado_ventana', 'estado_cortina'], 'integer'],
+            [['dia_hora'], 'safe'],
         ];
     }
 
@@ -60,8 +60,8 @@ class AlarmasSearch extends Alarmas
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'dia' => $this->dia,
-            'hora' => $this->hora,
+            'dia_hora' => $this->dia_hora,
+            'listo' => $this->listo,
             'estado_ventana' => $this->estado_ventana,
             'estado_cortina' => $this->estado_cortina,
         ]);
