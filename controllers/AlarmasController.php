@@ -8,6 +8,7 @@ use app\models\AlarmasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * AlarmasController implements the CRUD actions for Alarmas model.
@@ -20,6 +21,16 @@ class AlarmasController extends Controller
     public function behaviors()
     {
         return [
+            'access'=>[
+                'class' => AccessControl::className(),
+                'only' => ['create','update','view','index'],
+                'rules' => [
+                    [
+                    'allow' => true,
+                    'roles' => ['@']
+                    ],
+                ]
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
