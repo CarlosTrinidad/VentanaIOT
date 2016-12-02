@@ -48,13 +48,13 @@ class JsonParser implements RequestParserInterface
     public function parse($rawBody, $contentType)
     {
         try {
-            $parameters = Json::decode($rawBody, $this->asArray);
-            return $parameters === null ? [] : $parameters;
+            return Json::decode($rawBody, $this->asArray);
         } catch (InvalidParamException $e) {
             if ($this->throwException) {
-                throw new BadRequestHttpException('Invalid JSON data in request body: ' . $e->getMessage());
+                throw new BadRequestHttpException('Invalid JSON data in request body: ' . $e->getMessage(), 0, $e);
             }
-            return [];
+
+            return null;
         }
     }
 }
