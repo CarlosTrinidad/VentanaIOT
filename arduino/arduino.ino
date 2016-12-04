@@ -24,6 +24,8 @@ int server_cortina, server_ventana;
 //Estados anteriores
 int old_ventana, old_cortina;
 
+long randNumber,randNumber2;
+
 
 void control(int valorH, int valorL,int valorEV,int valorEC){
   if((valorH > 100) && (!valorEV)) ventana(1);//cerrar
@@ -109,6 +111,9 @@ pinMode(3, INPUT);
 }
 
 void loop() {
+  char randChar;
+  int randNumber,randNumber2;
+  String yii_full,increment,sub_uno,sub_dos;
   valorEV=digitalRead(pin2);
   valorEC=digitalRead(pin3);
   old_ventana=valorEV;
@@ -146,8 +151,18 @@ void loop() {
     String yii_e_cortina = String(valorEC);
     String yii_lluvia= String(valorH);
     String yii_luz = String(valorL);
-
-    String yii_full = "EV:"+yii_e_ventana +"EC:"+ yii_e_cortina +"LL:"+yii_lluvia +"L:"+yii_luz;
+    
+    //Encriptacion
+    for(int i = 0;i <=40;i++){
+      randNumber = random(33, 127);
+      randChar = (char)randNumber;
+      increment=increment+randChar;
+      }
+    randNumber2 = random(1,37);
+    sub_uno = increment.substring(1,randNumber2);
+    sub_dos = increment.substring(randNumber2+1,40);
+    
+    yii_full = sub_uno + "EV:"+yii_e_ventana +"EC:"+ yii_e_cortina +"LL:"+yii_lluvia +"L:"+yii_luz + sub_dos;
     Serial.println(yii_full);
     }
 }
