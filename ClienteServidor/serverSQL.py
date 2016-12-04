@@ -12,7 +12,7 @@ s.bind(("", 2000))
 s.listen(1)
 sc, addr = s.accept()  
 #base de datos
-bd = MySQLdb.connect("172.16.68.82","root","ts-IOT_sql2016","iot" )
+bd = MySQLdb.connect("172.16.69.82","root","ts-IOT_sql2016","iot" )
 cursor = bd.cursor()
 
 while True:

@@ -4,10 +4,13 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Alarmas;
+use app\models\WindowMode;
+
 use app\models\AlarmasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * AlarmasController implements the CRUD actions for Alarmas model.
@@ -20,6 +23,16 @@ class AlarmasController extends Controller
     public function behaviors()
     {
         return [
+            /*'access'=>[
+                'class' => AccessControl::className(),
+                'only' => ['create','update','view','index'],
+                'rules' => [
+                    [
+                    'allow' => true,
+                    'roles' => ['@']
+                    ],
+                ]
+            ],*/
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -35,6 +48,25 @@ class AlarmasController extends Controller
      */
     public function actionIndex()
     {
+        $searchModel = new AlarmasSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
+    public function actionMode($id)
+    {
+        $model = WindowMode::findOne(1);
+
+        $model->automatico = 1;
+        $model->save();
+
+
+
         $searchModel = new AlarmasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
