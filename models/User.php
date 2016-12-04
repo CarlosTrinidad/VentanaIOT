@@ -18,6 +18,7 @@ use Yii;
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     public $password;
+    public $password2;
     /**
      * @inheritdoc
      */
@@ -32,10 +33,15 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-          [['first_name', 'lastname', 'hash_password', 'user_name', 'email'], 'required'],
-        [['hash_password'], 'required', 'except' => ['update']],
-          [['first_name', 'lastname', 'user_name'], 'string', 'max' => 128],
-          [['hash_password'], 'string', 'max' => 20]
+          [['first_name', 'lastname', 'hash_password', 'user_name', 'email','status'], 'required'],
+          [['hash_password'], 'required', 'except' => ['hash_password']],
+          [['password2'],'compare','compareAttribute'=>'hash_password'],
+          [['status'], 'integer'],
+          [['first_name', 'lastname', 'email'], 'string', 'max' => 128],
+          [['email'],'email'],
+          [['user_name'],'string','min' => 5,'max'=> 20],
+          [['user_name','email'],'unique'],
+          [['hash_password'], 'string', 'min'=>8,'max' => 20]
       ];
     }
 
@@ -49,6 +55,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'first_name' => Yii::t('app', 'Nombre'),
             'lastname' => Yii::t('app', 'Apellido'),
             'hash_password' => Yii::t('app', 'Contraseña'),
+            'password2' => Yii::t('app', 'Confirmar Contraseña'),
             'user_name' => Yii::t('app', 'Nombre de Usuario'),
             'email' => Yii::t('app', 'Correo Electrónico'),
             'status' => Yii::t('app', 'Status'),
