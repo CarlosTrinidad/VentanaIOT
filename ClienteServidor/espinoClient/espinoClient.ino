@@ -78,7 +78,6 @@ void loop() {
 
 
 //------------------------
-//------------------------
 // general callbacks
 void onDataCb(ESP8266Client& client, char *data, unsigned short length)
 {
