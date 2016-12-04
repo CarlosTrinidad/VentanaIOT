@@ -3,19 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Alarmas;
-use app\models\WindowMode;
-
-use app\models\AlarmasSearch;
+use app\models\User;
+use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
 /**
- * AlarmasController implements the CRUD actions for Alarmas model.
+ * UserController implements the CRUD actions for User model.
  */
-class AlarmasController extends Controller
+class UserController extends Controller
 {
     /**
      * @inheritdoc
@@ -23,16 +20,6 @@ class AlarmasController extends Controller
     public function behaviors()
     {
         return [
-            /*'access'=>[
-                'class' => AccessControl::className(),
-                'only' => ['create','update','view','index'],
-                'rules' => [
-                    [
-                    'allow' => true,
-                    'roles' => ['@']
-                    ],
-                ]
-            ],*/
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -43,31 +30,12 @@ class AlarmasController extends Controller
     }
 
     /**
-     * Lists all Alarmas models.
+     * Lists all User models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AlarmasSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-
-    public function actionMode($id)
-    {
-        $model = WindowMode::findOne(1);
-
-        $model->automatico = 1;
-        $model->save();
-
-
-
-        $searchModel = new AlarmasSearch();
+        $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -77,8 +45,8 @@ class AlarmasController extends Controller
     }
 
     /**
-     * Displays a single Alarmas model.
-     * @param integer $id
+     * Displays a single User model.
+     * @param string $id
      * @return mixed
      */
     public function actionView($id)
@@ -89,13 +57,13 @@ class AlarmasController extends Controller
     }
 
     /**
-     * Creates a new Alarmas model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Alarmas();
+        $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -107,9 +75,9 @@ class AlarmasController extends Controller
     }
 
     /**
-     * Updates an existing Alarmas model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -126,9 +94,9 @@ class AlarmasController extends Controller
     }
 
     /**
-     * Deletes an existing Alarmas model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -139,15 +107,15 @@ class AlarmasController extends Controller
     }
 
     /**
-     * Finds the Alarmas model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Alarmas the loaded model
+     * @param string $id
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Alarmas::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
