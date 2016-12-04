@@ -85,8 +85,7 @@ void onDataCb(ESP8266Client& client, char *data, unsigned short length)
   Serial.write(data, length);
 }
 
-//------------------------
-//------------------------
+
 // TCP callbacks
 void onConnectCb(ESP8266Client& client)
 {
