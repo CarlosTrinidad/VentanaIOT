@@ -61,12 +61,8 @@ class AlarmasController extends Controller
     public function actionMode($id)
     {
         $model = WindowMode::findOne(1);
-
         $model->automatico = 1;
         $model->save();
-
-
-
         $searchModel = new AlarmasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
