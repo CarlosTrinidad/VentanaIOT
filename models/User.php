@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "users".
  *
- * @property string $id
+ * @property integer $id
  * @property string $first_name
  * @property string $lastname
  * @property string $hash_password
@@ -17,8 +17,8 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
-    public $password;
-    public $password2;
+  public $password;
+  public $password2;
     /**
      * @inheritdoc
      */
@@ -33,16 +33,15 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-          [['first_name', 'lastname', 'hash_password', 'user_name', 'email','status'], 'required'],
-          [['hash_password'], 'required', 'except' => ['hash_password']],
-          [['password2'],'compare','compareAttribute'=>'hash_password'],
-          [['status'], 'integer'],
-          [['first_name', 'lastname', 'email'], 'string', 'max' => 128],
-          [['email'],'email'],
-          [['user_name'],'string','min' => 5,'max'=> 20],
-          [['user_name','email'],'unique'],
-          [['hash_password'], 'string', 'min'=>8,'max' => 20]
-      ];
+            [['first_name', 'lastname', 'user_name', 'email'], 'required'],
+            [['hash_password','password2'], 'required', 'on' => ['Create']],
+            [['password2'],'compare','compareAttribute'=>'hash_password'],
+            [['first_name', 'lastname', 'email'], 'string', 'max' => 128],
+            [['email'],'email'],
+            [['user_name'], 'string', 'min' => 3,'max'=>20],
+            [['user_name','email'],'unique'],
+            [['hash_password', 'password2'], 'string', 'min'=>8,'max' => 20],
+        ];
     }
 
     /**
@@ -54,14 +53,14 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'id' => Yii::t('app', 'ID'),
             'first_name' => Yii::t('app', 'Nombre'),
             'lastname' => Yii::t('app', 'Apellido'),
-            'hash_password' => Yii::t('app', 'Contraseña'),
-            'password2' => Yii::t('app', 'Confirmar Contraseña'),
-            'user_name' => Yii::t('app', 'Nombre de Usuario'),
+            'hash_password' => Yii::t('app', 'Password'),
+            'password2' => Yii::t('app', 'Confirmar Password'),
+            'user_name' => Yii::t('app', 'UserName'),
             'email' => Yii::t('app', 'Correo Electrónico'),
-            'status' => Yii::t('app', 'Status'),
         ];
-    }
 
+
+    }
     public function beforeSave($insert)
     {
         if(parent::beforeSave($insert))
@@ -83,13 +82,11 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         }
         return false;
     }
-
     public static function findIdentity($id)
     {
         //return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
         return self::findOne($id);
     }
-
     /**
      * @inheritdoc
      */
@@ -100,10 +97,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 return new static($user);
             }
         }
-
         return null;
     }
-
     /**
      * Finds user by user_name
      *
@@ -117,7 +112,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public static function findIdUserName($id){
         return self::findOne(['id'=>$id]);
     }
-
     /**
      * @inheritdoc
      */
@@ -125,7 +119,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->id;
     }
-
     /**
      * @inheritdoc
      */
@@ -133,7 +126,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->hash_password;
     }
-
     /**
      * @inheritdoc
      */
@@ -141,7 +133,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->getAuthKey() === $authKey;
     }
-
     /**
      * Validates password
      *
