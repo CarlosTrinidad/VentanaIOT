@@ -3,19 +3,18 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Alarmas;
 use app\models\WindowMode;
-
-use app\models\AlarmasSearch;
+use app\models\WindowModeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
+use app\models\Alarmas;
+use app\models\AlarmasSearch;
 
 /**
- * AlarmasController implements the CRUD actions for Alarmas model.
+ * WindowModeController implements the CRUD actions for WindowMode model.
  */
-class AlarmasController extends Controller
+class WindowModeController extends Controller
 {
     /**
      * @inheritdoc
@@ -23,16 +22,6 @@ class AlarmasController extends Controller
     public function behaviors()
     {
         return [
-            /*'access'=>[
-                'class' => AccessControl::className(),
-                'only' => ['create','update','view','index'],
-                'rules' => [
-                    [
-                    'allow' => true,
-                    'roles' => ['@']
-                    ],
-                ]
-            ],*/
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -43,31 +32,12 @@ class AlarmasController extends Controller
     }
 
     /**
-     * Lists all Alarmas models.
+     * Lists all WindowMode models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AlarmasSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-
-    public function actionMode($id)
-    {
-        $model = WindowMode::findOne(1);
-
-        $model->automatico = 1;
-        $model->save();
-
-
-
-        $searchModel = new AlarmasSearch();
+        $searchModel = new WindowModeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -77,7 +47,7 @@ class AlarmasController extends Controller
     }
 
     /**
-     * Displays a single Alarmas model.
+     * Displays a single WindowMode model.
      * @param integer $id
      * @return mixed
      */
@@ -89,13 +59,13 @@ class AlarmasController extends Controller
     }
 
     /**
-     * Creates a new Alarmas model.
+     * Creates a new WindowMode model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Alarmas();
+        $model = new WindowMode();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -107,7 +77,7 @@ class AlarmasController extends Controller
     }
 
     /**
-     * Updates an existing Alarmas model.
+     * Updates an existing WindowMode model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -125,8 +95,9 @@ class AlarmasController extends Controller
         }
     }
 
+
     /**
-     * Deletes an existing Alarmas model.
+     * Deletes an existing WindowMode model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -139,15 +110,15 @@ class AlarmasController extends Controller
     }
 
     /**
-     * Finds the Alarmas model based on its primary key value.
+     * Finds the WindowMode model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Alarmas the loaded model
+     * @return WindowMode the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Alarmas::findOne($id)) !== null) {
+        if (($model = WindowMode::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
