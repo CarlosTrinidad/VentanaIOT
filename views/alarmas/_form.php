@@ -20,7 +20,7 @@ use kartik\daterange\DateRangePicker;
             'pluginOptions'=>[
                 'timePicker'=>true,
                 'timePicker24Hour' => true,
-                'locale'=>['format' => 'Y-m-d h:i A'],
+                'locale'=>['format' => 'Y-m-d H:i'],
                 'singleDatePicker'=>true,
                 'showDropdowns'=>true
             ]
@@ -29,8 +29,8 @@ use kartik\daterange\DateRangePicker;
      ?>
 
     <!-- <?= $form->field($model, 'listo')->textInput() ?> -->
-    <?= $form->field($model, 'estado_ventana')->dropDownList(['0' => 'Cerrar','1' => 'Abrir']) ?>
-    <?= $form->field($model, 'estado_cortina')->dropDownList(['0' => 'Cerrar','1' => 'Abrir']) ?>
+    <?= $form->field($model, 'estado_ventana')->dropDownList(['1' => 'Cerrar','0' => 'Abrir']) ?>
+    <?= $form->field($model, 'estado_cortina')->dropDownList(['1' => 'Cerrar','0' => 'Abrir']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
