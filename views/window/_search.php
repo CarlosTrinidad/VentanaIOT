@@ -17,7 +17,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'status') ?>
+    <?= $form->field($model, 'status_ventana') ?>
+    <?= $form->field($model, 'status_cortina') ?>
 
     <?= $form->field($model, 'rain_sensor') ?>
 

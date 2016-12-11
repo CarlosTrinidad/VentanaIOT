@@ -108,7 +108,8 @@ use yii\web\JsExpression;
 
             // 'id',
             'datetime',
-            'status',
+            'status_ventana',
+            'status_cortina',
             'rain_sensor',
             'light_sensor',
             'voice_sensor',

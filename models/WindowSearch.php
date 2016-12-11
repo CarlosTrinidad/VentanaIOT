@@ -18,7 +18,7 @@ class WindowSearch extends Window
     public function rules()
     {
         return [
-            [['id', 'status', 'rain_sensor', 'light_sensor', 'voice_sensor'], 'integer'],
+            [['id', 'status_ventana', 'status_cortina','rain_sensor', 'light_sensor', 'voice_sensor'], 'integer'],
             [['datetime'], 'safe'],
         ];
     }
@@ -63,7 +63,8 @@ class WindowSearch extends Window
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'status' => $this->status,
+            'status_ventana' => $this->status_ventana,
+            'status_cortina' => $this->status_cortina,
             'rain_sensor' => $this->rain_sensor,
             'light_sensor' => $this->light_sensor,
             'voice_sensor' => $this->voice_sensor,

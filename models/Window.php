@@ -30,8 +30,8 @@ class Window extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status', 'rain_sensor', 'light_sensor', 'voice_sensor', 'datetime'], 'required'],
-            [['status', 'rain_sensor', 'light_sensor', 'voice_sensor'], 'integer'],
+            [['status_ventana', 'status_cortina', 'rain_sensor', 'light_sensor', 'voice_sensor', 'datetime'], 'required'],
+            [['status_ventana', 'status_cortina', 'rain_sensor', 'light_sensor', 'voice_sensor'], 'integer'],
             [['datetime'], 'safe'],
         ];
     }
@@ -43,7 +43,8 @@ class Window extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'status' => Yii::t('app', 'Status'),
+            'status_cortina' => Yii::t('app', 'Status Cortina'),
+            'status_ventana' => Yii::t('app', 'Status Ventana'),
             'rain_sensor' => Yii::t('app', 'Rain Sensor'),
             'light_sensor' => Yii::t('app', 'Light Sensor'),
             'voice_sensor' => Yii::t('app', 'Voice Sensor'),
